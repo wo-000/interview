@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>防抖与节流</title>
+    <style>
+      body {
+        height: 800px;
+      }
+    </style>
+  </head>
+  <body>
+    <p><input type="button" id="input" value="测试防抖" /></p>
+    <script src="./index.js"></script>
+    <script>
+      // 防抖测试 start
+      const inputDom = document.getElementById("input");
+      function getValue(e) {
+        console.log(e.target.value);
+      }
+      // inputDom.onclick = getValue;
+      inputDom.onclick = debounce(getValue, 2000);
+      // 防抖测试 end
+
+      // 节流测试 start
+      function getScroll(e) {
+        console.log(e);
+      }
+      // window.addEventListener("scroll", getScroll);
+      window.addEventListener("scroll", throttle(getScroll, 1000));
+
+      // 节流测试 end
+    </script>
+  </body>
+</html>
