@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>斐波那契数列</title>
+  </head>
+  <body>
+    <script>
+      // 简易版
+      // 回重复多次计算已被计算过的值，浪费性能
+      // function simpleFib(n) {
+      //   console.log(n);
+      //   return n < 2 ? n : simpleFib(n - 1) + simpleFib(n - 2);
+      // }
+      // console.log(simpleFib(8));
+
+      // 避免多次计算，避免浪费性能
+      function fibonacci() {
+        let memo = [0, 1];
+        return function fib(n) {
+          let result = memo[n];
+          if (typeof result !== "number") {
+            // if判断，避免第一次进入 result为undefined
+            result = fib(n - 1) + fib(n - 2);
+            memo[n] = result;
+          }
+          console.log(memo);
+          return result;
+        };
+      }
+      console.log(fibonacci()(10));
+
+      // 封装
+      // function memoizer(memo, fn) {
+      //   return function recur(n) {
+      //     let result = memo[n];
+      //     if (typeof result !== "number") {
+      //       result = fn(recur, n);
+      //       memo[n] = result;
+      //     }
+      //     return result;
+      //   };
+      // }
+
+      // let fib = memoizer([0, 1], function (recur, n) {
+      //   return recur(n - 1) + recur(n - 2);
+      // });
+      // console.log(fib(9));
+    </script>
+  </body>
+</html>

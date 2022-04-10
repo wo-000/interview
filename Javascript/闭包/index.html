@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>闭包</title>
+  </head>
+  <body>
+    <ul>
+      <li>1</li>
+      <li>2</li>
+      <li>3</li>
+      <li>4</li>
+      <li>5</li>
+      <li>6</li>
+      <li>7</li>
+      <li>8</li>
+      <li>9</li>
+      <li>10</li>
+    </ul>
+    <script>
+      /*
+       *
+       * 闭包的作用：局部变量无法共享和长久的保存，而全局变量可能造成变量污染，所以我们希望有一种机制既可以长久的保存变量又不会造成全局污染
+       * 闭包的缺点：
+       * 闭包会常驻内存，使用不当会造成内存泄漏
+       * 函数内部可以引用外部参数和变量
+       * 参数和变量不会被垃圾回收机制回收
+       *
+       *
+       * */
+
+      const lis = document.querySelectorAll("li");
+
+      // 错误案例
+      // function a(lis) {
+      //   var i = 0;
+      //   for (i = 0; i < lis.length; i++) {
+      //     lis[i].onclick = function (e) {
+      //       console.log(i);
+      //     };
+      //   }
+      // }
+      // a(lis);
+
+      // 闭包的正确使用
+      function a(lis) {
+        function b(i) {
+          return function (e) {
+            console.log(i, e);
+          };
+        }
+        var i = 0;
+        for (i = 0; i < lis.length; i++) {
+          lis[i].onclick = b(i);
+        }
+      }
+      a(lis);
+    </script>
+  </body>
+</html>

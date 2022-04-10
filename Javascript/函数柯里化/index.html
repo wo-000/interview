@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>函数柯里化</title>
+  </head>
+  <body>
+    <script>
+      /*
+       *
+       * 函数柯里化
+       * 将能够接收多个参数的函数转化为接收单一参数的函数，并返回接收余下参数且返回结果
+       * 作用：参数复用，提前返回和延迟执行
+       *
+       *
+       */
+      const add = function (x) {
+        return function (y) {
+          console.log(x, y);
+          return x + y;
+        };
+      };
+      const add1 = add(1);
+      console.log(add1(2)); //3
+      console.log(add1(20)); //21
+
+      const add2 = add(10);
+
+      console.log(add2(2)); //12
+      console.log(add2(20)); //30
+    </script>
+  </body>
+</html>
