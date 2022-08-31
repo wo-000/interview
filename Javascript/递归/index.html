@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>递归</title>
+</head>
+<body>
+    <script>
+        // 函数自身调用自身 
+        // 使用递归必须要有终止条件，否则会堆栈溢出
+
+        // 利用递归实现数组取最大值
+        const arr = [1,4,6,1,2,4,6,7,90,102,9705,32,234,656,8]
+
+        function getMaxNumber(arr){
+            if(arr.length===1) return arr[0]  // 终止条件
+
+            let half = Math.floor(arr.length/2)
+
+            let leftArr = arr.slice(0,half)
+            let leftMax = getMaxNumber(leftArr)
+
+            let rightArr = arr.slice(half,arr.length)
+            let rightMax = getMaxNumber(rightArr)
+
+            return leftMax>rightMax?leftMax:rightMax
+
+        }
+
+        const maxNum = getMaxNumber(arr)
+
+        console.log(maxNum)
+    </script>
+</body>
+</html>

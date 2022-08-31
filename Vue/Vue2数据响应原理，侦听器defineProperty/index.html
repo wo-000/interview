@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue2数据响应原理，侦听器defineProperty</title>
+</head>
+<body>
+    <script type="module">
+        import {Oberserve} from './index.js'
+        const obj={
+            name:'sa',
+            age:23,
+            address: 'djaksfaf',
+            children:{
+                age:34,
+                name: 'sadasdsdasd'
+            }
+        }
+        const watchObj = new Oberserve(obj)
+
+        console.log(watchObj.value.name,90)
+        watchObj.value.name ='sdaddasdas'
+        console.log(watchObj.value.name,910)
+        console.log(watchObj.value.children.name,91011)
+        watchObj.value.children.name ='vnvajndja'
+        console.log(watchObj.value.children.name,9101)
+    </script>
+</body>
+</html>

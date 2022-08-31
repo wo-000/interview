@@ -57,6 +57,25 @@
         }
       }
       a(lis);
+
+
+      // //////////
+      function sa(){
+        let a=1
+        let b=2
+
+        return {
+          fn1:function(){
+            return a+b
+          },
+          fn2:function(){
+            return b-a
+          }
+        }
+      }
+      const fn = sa()
+      console.log(fn.fn1())
+      console.log(fn.fn2())
     </script>
   </body>
 </html>

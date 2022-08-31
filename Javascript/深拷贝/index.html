@@ -1,0 +1,91 @@
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>深拷贝</title>
+    </head>
+    <body>
+        <script>
+            // 使用递归必须要有终止条件，否则会堆栈溢出
+            // 利用递归实现深拷贝
+            let obj={
+                numbers:1,
+                strings:'asa',
+                und: undefined,
+                nul: null,
+                arrNumber:[1,2,3,4,5,5],
+                fn:function(){console.log('dhfjsk')},
+                arrString:['32','ds','d'],
+                arr:[
+                    {
+                        name:'aa',
+                        age:18
+                    },
+                    {
+                        name:'bb',
+                        age:20
+                    },
+                    {
+                        name:'cc',
+                        age:19,
+                        children:[
+                            {
+                                id:10
+                            },
+                            {
+                                id:40
+                            }
+                        ]
+                    }    
+                ],
+                objArr:{
+                    children:[
+                        {
+                            name:'dsd',
+                            adress:'dfafsa',
+                            
+                        },
+                        {
+                            name:'dd',
+                            adress:'dfafsa',
+                            children:[
+                                {
+                                    id:1
+                                },
+                                {
+                                    id:4
+                                }
+                            ]
+                        },
+                        {
+                            name:'dsssd',
+                            adress:'dffsa'
+                        }
+                    ]
+                }
+            }
+        
+            function deepClone(obj){
+                let targetObj = Array.isArray(obj)?[]:{}
+                for(let keys in obj){
+                    if(obj.hasOwnProperty(keys)){
+                        if(obj[keys]&&typeof obj[keys]==='object'){
+                            targetObj[keys] = Array.isArray(obj[keys])?[]:{}
+                            targetObj[keys] = deepClone(obj[keys])
+                        }else{
+                            targetObj[keys]=obj[keys]
+                        }
+                    }
+                }
+                return targetObj
+            }
+
+            const cloneObj = deepClone(obj)
+            obj.objArr.children[0].name='djfkaldjfl'
+            cloneObj.objArr.children[1].name='dakgjdfhnxmcnx'
+            console.log(cloneObj,'----',obj)
+        </script>
+    </body>
+    </html>
